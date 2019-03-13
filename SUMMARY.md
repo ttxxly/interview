@@ -6,6 +6,9 @@
 
 * [面试相关](100-面试相关/REAdME.md)
 * [java 核心知识](101-java-核心知识/REAdME.md)
+  * [java 基础部分](101-java-核心知识/1-java-基础部分.md)
+  * [java 集合](101-java-核心知识/2-java-集合.md)
+  * [java 虚拟机](101-java-核心知识/3-java-虚拟机.md)
 * [数据库](102-数据库/README.md)
   * [mysql](102-数据库/1020-mysql.md)
   * [redis](102-数据库/1025-redis.md)
