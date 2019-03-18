@@ -16,3 +16,18 @@
 synchronized 或者 Lock：
   保证同一个时刻只有一个线程获取锁执行代码，锁释放之前把最 新的值刷新到主内存，实现可见性。
 ```
+
+#### 在 java 中守护线程和本地线程区别？
+
+```text
+java 中的线程分为两种：守护线程（Daemon）和用户线程（User）。
+
+任何线程都可以设置为守护线程和用户线程，通过方法 
+  Thread.setDaemon(boolon);
+  true 则把该线程设置为守护线程，反之则为用户线程。
+注意：Thread.setDaemon()必须在 Thread.start()之前调用，否则运行时会抛出异常。
+
+两者的区别：
+唯一的区别是判断虚拟机(JVM)何时离开，Daemon 是为其他线程提供服务，如果
+全部的 User Thread 已经撤离，Daemon 没有可服务的线程，JVM 撤离。
+```
