@@ -37,3 +37,78 @@ java 中的线程分为两种：守护线程（Daemon）和用户线程（User�
 采用时间片轮转的方式。
 可以设置线程的优先级，会映射到下层的系统上面的优先级上，如非特别需要，尽量不要用，防止线程饥饿。
 ```
+#### 创建线程有几种不同的方式？
+
+```text
+1. **继承 Thread 类创建线程类**
+（1）定义Thread类的子类，并重写该类的run方法，该run方法的方法体就代表了线程要完成的任务。
+  因此把run()方法称为执行体。
+（2）创建Thread子类的实例，即创建了线程对象。
+（3）调用线程对象的start()方法来启动该线程。
+
+package com.thread;
+public class FirstThreadTest extends Thread{
+    int i = 0;
+    //重写run方法，run方法的方法体就是现场执行体
+    public void run()
+    {
+        for(;i<100;i++){
+        System.out.println(getName()+"  "+i);
+
+        }
+    }
+    public static void main(String[] args)
+    {
+        for(int i = 0;i< 100;i++)
+        {
+            System.out.println(Thread.currentThread().getName()+"  : "+i);
+            if(i==20)
+            {
+                new FirstThreadTest().start();
+                new FirstThreadTest().start();
+            }
+        }
+    }
+}
+
+2. **通过Runnable接口创建线程类**
+（1）定义runnable接口的实现类，并重写该接口的run()方法，该run()方法的方法体
+  同样是该线程的线程执行体。
+（2）创建 Runnable实现类的实例，并依此实例作为Thread的target来创建Thread对象，
+  该Thread对象才是真正的线程对象。
+（3）调用线程对象的start()方法来启动该线程。
+
+package com.thread;
+public class RunnableThreadTest implements Runnable
+{
+    private int i;
+    public void run()
+    {
+        for(i = 0;i <100;i++)
+        {
+            System.out.println(Thread.currentThread().getName()+" "+i);
+        }
+    }
+    public static void main(String[] args)
+    {
+        for(int i = 0;i < 100;i++)
+        {
+            System.out.println(Thread.currentThread().getName()+" "+i);
+            if(i==20)
+            {
+                RunnableThreadTest rtt = new RunnableThreadTest();
+                new Thread(rtt,"新线程1").start();
+                new Thread(rtt,"新线程2").start();
+            }
+        }
+    }
+}
+
+3. **实现Callable接口**
+4. **使用Executor框架创建线程池**。Executor框架是juc里提供的线程池的实现。
+
+一般情况下，常见的是第二种。
+* Runnable接口有如下好处：
+*①避免单继承的局限，一个类可以实现多个接口。
+*②适合于资源的共享
+```
