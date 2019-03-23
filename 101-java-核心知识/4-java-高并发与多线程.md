@@ -191,3 +191,10 @@ public class JoinTest2 {
 }
 
 ```
+
+#### 在 java中lock接口比synchronized 块的优势是什么？
+
+```Java
+lock 接口在多线程和并发编程中最大的优势是它们为读和写分别提供了锁，
+它能满足你写像ConcurrentHashMap 这样的高性能数据结构和有条件的阻塞。
+```
