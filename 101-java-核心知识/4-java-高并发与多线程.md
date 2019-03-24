@@ -198,3 +198,74 @@ public class JoinTest2 {
 lock 接口在多线程和并发编程中最大的优势是它们为读和写分别提供了锁，
 它能满足你写像ConcurrentHashMap 这样的高性能数据结构和有条件的阻塞。
 ```
+
+#### 你需要实现一个高效的缓存，它允许多个用户读，但只允许一个用户写，以此来保持它的完整性，你会怎样去实现它？
+
+```Java
+考察 ReentrantReadWriteLock 的使用。
+
+import java.util.Date;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+
+/**
+ * 你需要实现一个高效的缓存，它允许多个用户读，但只允许一个用户写，以此来保持它的完整性，你会怎样去实现它？
+ * @author user
+ *
+ */
+public class Test2 {
+
+  public static void main(String[] args) {
+    for (int i = 0; i < 3; i++) {
+      new Thread(new Runnable() {
+        
+        @Override
+        public void run() {
+          MyData.read();
+        }
+      }).start();
+    }
+    for (int i = 0; i < 3; i++) {
+      new Thread(new Runnable() {
+        
+        @Override
+        public void run() {
+          MyData.write("a");
+        }
+      }).start();
+    }
+  }
+}
+
+class MyData{
+  //数据
+  private static String data = "0";
+  //读写锁
+  private static ReadWriteLock rw = new ReentrantReadWriteLock();
+  //读数据
+  public static void read(){
+    rw.readLock().lock();
+    System.out.println(Thread.currentThread()+"读取一次数据："+data+"时间："+new Date());
+    try {
+      Thread.sleep(1000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    } finally {
+      rw.readLock().unlock();
+    }
+  }
+  //写数据
+  public static void write(String data){
+    rw.writeLock().lock();
+    System.out.println(Thread.currentThread()+"对数据进行修改一次："+data+"时间："+new Date());
+    try {
+      Thread.sleep(1000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    } finally {
+      rw.writeLock().unlock();
+    }
+  }
+}
+
+```
