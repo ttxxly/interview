@@ -313,3 +313,16 @@ Synchronized 是在加锁，加对象锁。
 java中可以创建 Volatile 类型数组，不过只是一个指向数组的引用。
 
 ```
+#### Volatile 类型变量提供什么保证？
+
+```Java
+volatile 变量提供顺序和可见性保证。
+  JVM 或者JIT 为了获得更好的性能会对语句进行重排序，但是 volatile 类型变量即使在没有同步块的
+    情况下赋值也不会与其他语句重排序。
+  volatile 提供 happens-before 的保证，确保一个线程的修改能对其他线程是可见的。
+  某些情况下，volatile 还能提供原子性，如读 64位数据类型
+    long 和 double 都不是原子的，但是 volatile 类型的 long 和 double就是原子的。
+
+```
+
+可参考资料：happens-before 原则
