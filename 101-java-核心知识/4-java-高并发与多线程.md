@@ -326,3 +326,17 @@ volatile 变量提供顺序和可见性保证。
 ```
 
 可参考资料：happens-before 原则
+
+#### ThreadLocal（线程局部变量）关键字？
+
+```text
+使用 ThreadLocal 维护变量时，其为每个使用该变量的线程提供独立的变量副本，
+所以每一个线程都可以独立的改变自己的副本，而不会影响其他线程对应的副本。
+
+ThreadLocal 内部实现机制：
+  每个线程内部都会维护一个类似 HashMap 的对象，称为 ThreadLocalMap，里边会包含若干
+   Entry（K-V 键值对），相应的线程被称为这些 Entry 的属主线程；
+  Entry 的 Key 是一个 ThreadLocal 实例，Value 是一个线程特有对象。
+  Entry 的作用即是：为其属主线程建立起一个 ThreadLocal 实例与一个线程特有对象之间的对应关系；
+  Entry 对 Key 的引用是弱引用；Entry 对 Value 的引用是强引用。
+```
