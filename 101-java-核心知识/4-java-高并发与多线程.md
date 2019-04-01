@@ -347,3 +347,14 @@ ThreadLocal 内部实现机制：
 当你调用 start()方法时你将创建新的线程，并且执行在 run()方法里的代码。
 但是如果你直接调用 run()方法，它不会创建新的线程也不会执行调用线程的代码
 ```
+
+#### AbstractQueuedSynchronizer 介绍？
+
+```Java
+AbstractQueuedSynchronizer 提供了一个队列，大多数开发者可能从来不会直接 用到 AQS，
+  AQS 有个变量用来存放状态信息 state,可以通过 protected 的 getState,
+  setState,compareAndSetState 函数进行调用。
+  对于 ReentrantLock 来说， state 可以用来表示该线程获可重入锁的次数
+  对于semaphore 来说 state 用来表示当 前可用信号的个数，
+  FutuerTask 用来表示任务状态（例如还没开始，运行，完成， 取消）。
+```
