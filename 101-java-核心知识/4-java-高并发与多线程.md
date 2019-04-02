@@ -358,3 +358,19 @@ AbstractQueuedSynchronizer 提供了一个队列，大多数开发者可能从�
   对于semaphore 来说 state 用来表示当 前可用信号的个数，
   FutuerTask 用来表示任务状态（例如还没开始，运行，完成， 取消）。
 ```
+
+### JDK5 并发包
+
+#### 在 Java 中 CycliBarriar 和 CountdownLatch 有什么区别？
+
+```Java
+CountDownLatch 的计数器只能使用一次。
+CyclicBarrier 的计数器可以使用 reset() 方法重置。
+
+所以 CyclicBarrier 能处理更为复杂的业务场景，比如如果计算发生错误，可以 重置计数器，并让线程们重新执行一次。
+
+```
+
+为什么我们调用 start()方法时会执行 run()方法，为什么我们不能直接调用 run()方法？
+
+#### CountDownLatch 原理？
