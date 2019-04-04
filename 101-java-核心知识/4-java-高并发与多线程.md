@@ -376,3 +376,18 @@ CyclicBarrier 的计数器可以使用 reset() 方法重置。
 #### CountDownLatch 原理？
 
 ### 线程池
+
+#### 什么是线程池？有哪几种创建方式？
+
+```text
+线程池就是提前创建若干个线程，如果有任务需要处理，线程池里的线程就会处理任务，
+处理完之后线程并不会被销毁，而是等待下一个任务。由于创建和销毁线程都是消耗系统资源的，
+所以当你想要频繁的创建和销毁线程的时候就可以考虑使用线程池来提升系统的性能。
+java 提供了一个 java.util.concurrent.Executor 接口的实现用于创建线程池。
+
+创建方式：
+（1）newCachedThreadPool 创建一个可缓存线程池
+（2）newFixedThreadPool 创建一个定长线程池，可控制线程最大并发数。
+（3）newScheduledThreadPool 创建一个定长线程池，支持定时及周期性任务执行。
+（4）newSingleThreadExecutor 创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务。
+```
