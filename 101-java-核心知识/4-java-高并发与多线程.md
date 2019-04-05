@@ -391,3 +391,15 @@ java 提供了一个 java.util.concurrent.Executor 接口的实现用于创建�
 （3）newScheduledThreadPool 创建一个定长线程池，支持定时及周期性任务执行。
 （4）newSingleThreadExecutor 创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务。
 ```
+#### 我们为什么要使用线程池？核心线程池内部实现了解吗？
+
+```text
+1. 减少创建和销毁线程的次数，每个工作线程都可以被重复利用，可执行多个任务。
+ 可以根据系统的承受能力，调整线程池中工作线程的数目，放置因为消耗过多的内存，
+ 而把服务器累趴下（每个线程大约需要 1 MB 内存，线程开的越多，消耗的内存也就越大，最后死机）
+
+2. 对于核心的几个线程池，无论是 newFixedThreadPool() 方法，
+newSingleThreadExecutor() 还是 newCachedThreadPool() 方法，
+虽然看起来创建的线程有着完全不同的功能特点，但其实内部实现均使用了 ThreadPoolExecutor 实现，
+其实都只是 ThreadPoolExecutor 类的封装。
+```
