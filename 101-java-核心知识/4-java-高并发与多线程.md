@@ -403,3 +403,15 @@ newSingleThreadExecutor() 还是 newCachedThreadPool() 方法，
 虽然看起来创建的线程有着完全不同的功能特点，但其实内部实现均使用了 ThreadPoolExecutor 实现，
 其实都只是 ThreadPoolExecutor 类的封装。
 ```
+
+#### 如果你提交任务时，线程池队列已满，这时会发生什么？
+
+```text
+（1）如果使用的是无界队列 LinkedBlockingQueue，也就是无界队列的话，
+  没关系，继续添加任务到阻塞队列中等待执行，因为 LinkedBlockingQueue 可以
+  近乎认为是一个无穷大的队列，可以无限存放任务
+（2）如果使用的是有界队列比如 ArrayBlockingQueue，任务首先会被添加到ArrayBlockingQueue 中，
+  ArrayBlockingQueue 满了，会根据maximumPoolSize 的值增加线程数量，
+  如果增加了线程数量还是处理不过来，ArrayBlockingQueue 继续满，
+  那么则会使用拒绝策略RejectedExecutionHandler 处理满了的任务，默认是 AbortPolicy
+```
