@@ -415,3 +415,9 @@ newSingleThreadExecutor() 还是 newCachedThreadPool() 方法，
   如果增加了线程数量还是处理不过来，ArrayBlockingQueue 继续满，
   那么则会使用拒绝策略RejectedExecutionHandler 处理满了的任务，默认是 AbortPolicy
 ```
+
+#### ReentrantReadWriteLock 介绍？
+
+```Java
+ReentrantReadWriteLock，它 可以实现读写分离，多个线程同时进行读取，但是最多一个写线程存在
+```
