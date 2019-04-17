@@ -533,3 +533,17 @@ Synchronized是由JVM实现的一种实现互斥同步的一种方式。
   当执行monitorexit指令时将锁计数器-1；当计数器为0时，锁就被释放了。
 Java中Synchronize通过在对象头设置标记，达到了获取锁和释放锁的目的。
 ```
+#### 你刚才提到获取对象的锁，这个“锁”到底是什么？如何确定对象的锁？
+
+```text
+“锁”的本质其实是monitorenter和monitorexit字节码指令的一个Reference类型的参数，即要锁定和解锁的对象。
+
+我们知道，使用Synchronized可以修饰不同的对象，因此，对应的对象锁可以这么确定。
+
+如果Synchronized明确指定了锁对象，比如Synchronized（变量名）、Synchronized(this)等，说明加解锁对象为该对象。
+如果没有明确指定：
+  若Synchronized修饰的方法为非静态方法，表示此方法对应的对象为锁对象；
+  若Synchronized修饰的方法为静态方法，则表示此方法对应的类对象为锁对象。
+注意，当一个对象被锁住时，对象里面所有用Synchronized修饰的方法都将产生堵塞，
+  而对象里非Synchronized修饰的方法可正常被调用，不受锁影响。
+```
