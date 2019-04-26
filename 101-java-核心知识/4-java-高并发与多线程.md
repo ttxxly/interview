@@ -672,3 +672,9 @@ java.util.concurrent.atomic包下的类大多是使用CAS操作来实现的(Atom
   之前说过了 CAS 里面是一个循环判断的过程，如果线程一直没有获取到状态，cpu 资源会 一直被占用。
 
 ```
+#### 什么是 Future？
+
+```text
+通过实现 Callback 接口，并用 Future 可以来接收多线程的执行结果。
+Future 表示一个可能还没有完成的异步任务的结果，针对这个结果可以添加 Callback 以便 在任务执行成功或失败后作出相应的操作
+```
