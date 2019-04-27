@@ -678,3 +678,14 @@ java.util.concurrent.atomic包下的类大多是使用CAS操作来实现的(Atom
 通过实现 Callback 接口，并用 Future 可以来接收多线程的执行结果。
 Future 表示一个可能还没有完成的异步任务的结果，针对这个结果可以添加 Callback 以便 在任务执行成功或失败后作出相应的操作
 ```
+
+#### 什么是 AQS？
+
+```text
+AQS 是 AbustactQueuedSynchronizer 的简称，它是一个 Java 提高的底层同步工具类。
+用一 个 int 类型的变量表示同步状态，并提供了一系列的 CAS 操作来管理这个同步状态。 
+
+AQS 是一个用来构建锁和同步器的框架，使用 AQS 能简单且高效地构造出应用广泛的大量 的同步器，
+  比如我们提到的 ReentrantLock，Semaphore
+  其他的诸如 ReentrantReadWriteLock， SynchronousQueue，FutureTask 等等皆是基于 AQS 的。
+```
