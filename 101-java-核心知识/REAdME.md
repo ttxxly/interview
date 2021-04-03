@@ -1,0 +1,1 @@
+反正就是各种数据库。Oracle mysql reids MongoDB啥的。
