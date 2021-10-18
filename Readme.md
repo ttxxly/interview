@@ -9,9 +9,7 @@
 * https://github.com/kdn251/interviews/blob/master/README-zh-cn.md
 * https://crossoverjie.top/JCSprout/#/?id=introduction
 * https://github.com/Snailclimb/JavaGuide
-* https://github.com/Snailclimb/JavaGuide
 * https://github.com/it-interview/EasyJob
 * https://github.com/doocs/advanced-java
 * https://github.com/CyC2018/CS-Notes
-* https://github.com/awangdev/LintCode
 * https://github.com/awangdev/LintCode
