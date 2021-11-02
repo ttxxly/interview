@@ -13,3 +13,6 @@
 * https://github.com/doocs/advanced-java
 * https://github.com/CyC2018/CS-Notes
 * https://github.com/awangdev/LintCode
+
+### 电子书
+* https://github.com/iamshuaidi/CS-Book
