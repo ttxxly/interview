@@ -1,0 +1,1 @@
+主要包含市面上常见的几种消息队列框架。例如ActiveMQ、RabbitMQ、kafka等。
